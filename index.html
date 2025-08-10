@@ -3,35 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
+    <title>Currency Converter Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gradient-to-r from-blue-400 to-cyan-300 min-h-screen flex items-center justify-center">
+<body class="bg-gradient-to-r from-blue-400 to-cyan-300 min-h-screen flex flex-col items-center p-6">
 
-    <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-md text-center">
-        <h2 class="text-2xl font-bold mb-4">💱 Currency Converter</h2>
+    <div class="bg-white shadow-xl rounded-xl p-6 w-full max-w-3xl">
+        <h2 class="text-3xl font-bold mb-4 text-center">💱 Currency Converter Dashboard</h2>
 
-        <!-- From Currency -->
-        <div class="flex items-center mb-4 gap-2">
-            <img id="fromFlag" class="w-8 h-6 border rounded" src="" alt="From Flag">
-            <select id="fromCurrency" class="border rounded p-2 flex-1"></select>
-            <input type="number" id="amount" value="1" min="0" class="border rounded p-2 w-24 text-center">
+        <!-- Converter -->
+        <div class="bg-gray-50 p-4 rounded-lg mb-6">
+            <div class="flex items-center gap-2 mb-4">
+                <img id="fromFlag" class="w-8 h-6 border rounded" src="" alt="From Flag">
+                <select id="fromCurrency" class="border rounded p-2 flex-1"></select>
+                <input type="number" id="amount" value="1" min="0" class="border rounded p-2 w-24 text-center">
+            </div>
+
+            <div class="flex justify-center mb-4">
+                <button id="swap" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 transition">
+                    🔄
+                </button>
+            </div>
+
+            <div class="flex items-center gap-2 mb-4">
+                <img id="toFlag" class="w-8 h-6 border rounded" src="" alt="To Flag">
+                <select id="toCurrency" class="border rounded p-2 flex-1"></select>
+            </div>
+
+            <div id="result" class="text-lg font-semibold text-gray-800 text-center">Loading...</div>
+            <div id="rateInfo" class="text-sm text-gray-500 mt-1 text-center"></div>
         </div>
 
-        <!-- Swap Button -->
-        <button id="swap" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 mb-4 transition">
-            🔄
-        </button>
+        <!-- Dashboard Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Chart -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="text-lg font-bold mb-2">📈 30-Day Exchange Trend</h3>
+                <canvas id="rateChart"></canvas>
+            </div>
 
-        <!-- To Currency -->
-        <div class="flex items-center mb-4 gap-2">
-            <img id="toFlag" class="w-8 h-6 border rounded" src="" alt="To Flag">
-            <select id="toCurrency" class="border rounded p-2 flex-1"></select>
+            <!-- Top 5 & Info -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="text-lg font-bold mb-2">📋 Top 5 Rates</h3>
+                <ul id="topRates" class="mb-4 text-sm"></ul>
+
+                <h3 class="text-lg font-bold mb-2">ℹ️ Currency Info</h3>
+                <div id="currencyInfo" class="text-sm text-gray-700"></div>
+            </div>
         </div>
-
-        <!-- Result -->
-        <div id="result" class="text-lg font-semibold text-gray-800">Loading...</div>
-        <div id="rateInfo" class="text-sm text-gray-500 mt-1"></div>
     </div>
 
     <script src="script.js"></script>
