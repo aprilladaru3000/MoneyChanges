@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-400 to-cyan-300 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-md text-center">
+        <h2 class="text-2xl font-bold mb-4">💱 Currency Converter</h2>
+
+        <!-- From Currency -->
+        <div class="flex items-center mb-4 gap-2">
+            <img id="fromFlag" class="w-8 h-6 border rounded" src="" alt="From Flag">
+            <select id="fromCurrency" class="border rounded p-2 flex-1"></select>
+            <input type="number" id="amount" value="1" min="0" class="border rounded p-2 w-24 text-center">
+        </div>
+
+        <!-- Swap Button -->
+        <button id="swap" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 py-2 mb-4 transition">
+            🔄
+        </button>
+
+        <!-- To Currency -->
+        <div class="flex items-center mb-4 gap-2">
+            <img id="toFlag" class="w-8 h-6 border rounded" src="" alt="To Flag">
+            <select id="toCurrency" class="border rounded p-2 flex-1"></select>
+        </div>
+
+        <!-- Result -->
+        <div id="result" class="text-lg font-semibold text-gray-800">Loading...</div>
+        <div id="rateInfo" class="text-sm text-gray-500 mt-1"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
