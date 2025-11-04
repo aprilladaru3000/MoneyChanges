@@ -6,6 +6,7 @@ const rateInfo = document.getElementById("rateInfo");
 const fromFlag = document.getElementById("fromFlag");
 const toFlag = document.getElementById("toFlag");
 const swapBtn = document.getElementById("swap");
+const randomBtn = document.getElementById("randomBtn");
 const topRatesList = document.getElementById("topRates");
 const currencyInfo = document.getElementById("currencyInfo");
 const ctx = document.getElementById("rateChart");
@@ -111,6 +112,27 @@ swapBtn.addEventListener("click", () => {
     updateFlags();
     convert();
 });
+
+// Random quick-convert: pick two random currencies and amount, then convert
+function randomConvert() {
+    const fromOptions = Array.from(fromCurrency.options).map(o => o.value);
+    if (fromOptions.length < 2) return;
+    // pick two distinct currencies
+    let a = Math.floor(Math.random() * fromOptions.length);
+    let b = Math.floor(Math.random() * fromOptions.length);
+    while (b === a) b = Math.floor(Math.random() * fromOptions.length);
+    const randFrom = fromOptions[a];
+    const randTo = fromOptions[b];
+    // random amount between 0.1 and 1000
+    const randAmount = (Math.random() * 999.9 + 0.1).toFixed(2);
+    fromCurrency.value = randFrom;
+    toCurrency.value = randTo;
+    amount.value = randAmount;
+    updateFlags();
+    convert();
+}
+
+if (randomBtn) randomBtn.addEventListener('click', randomConvert);
 
 fromCurrency.addEventListener("change", () => { updateFlags(); convert(); });
 toCurrency.addEventListener("change", () => { updateFlags(); convert(); });
